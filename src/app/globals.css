@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Keystone palette — deep navy nights with warm gold accents */
+  --color-night-950: #070d16;
+  --color-night-900: #0b1524;
+  --color-night-800: #101e33;
+  --color-night-700: #182a45;
+  --color-night-600: #22385a;
+
+  --color-gold-300: #ecd48a;
+  --color-gold-400: #dfc06a;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a9851d;
+
+  --color-ivory-50: #faf8f3;
+  --color-ivory-100: #f4f0e7;
+  --color-ivory-200: #e8e1d2;
+
+  --color-mist-100: #eef1f5;
+  --color-mist-400: #9aa6b5;
+  --color-mist-500: #7c8896;
+
+  --radius-card: 12px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: var(--color-night-900);
+  --foreground: var(--color-ivory-50);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-ivory-50);
+    color: var(--color-night-900);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-gold-500);
+    color: var(--color-night-900);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-keystone {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 76rem;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .container-keystone {
+      padding-inline: 2rem;
+    }
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-gold-600);
+  }
+
+  .eyebrow-on-dark {
+    color: var(--color-gold-400);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .btn-gold {
+    background: var(--color-gold-500);
+    color: var(--color-night-950);
+  }
+
+  .btn-gold:hover {
+    background: var(--color-gold-400);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -10px rgb(201 162 39 / 0.55);
+  }
+
+  .btn-outline-light {
+    border: 1px solid rgb(255 255 255 / 0.5);
+    color: var(--color-ivory-50);
+  }
+
+  .btn-outline-light:hover {
+    border-color: var(--color-gold-400);
+    color: var(--color-gold-300);
+  }
+
+  .btn-outline-dark {
+    border: 1px solid var(--color-night-900);
+    color: var(--color-night-900);
+  }
+
+  .btn-outline-dark:hover {
+    background: var(--color-night-900);
+    color: var(--color-ivory-50);
+  }
+
+  .card-lift {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -20px rgb(7 13 22 / 0.35);
+  }
+
+  .rule-gold {
+    width: 3rem;
+    height: 2px;
+    background: var(--color-gold-500);
+    border-radius: 999px;
+  }
 }
